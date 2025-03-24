@@ -1,0 +1,30 @@
+﻿@model CarBikeViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Car and Bike</h1>
+
+    <h2>Car Details</h2>
+    <button class="btn btn-primary" onclick="callMethod('SpeedUpCar')">Speed Up</button>
+    <button class="btn btn-primary" onclick="callMethod('SlowDownCar')">Slow Down</button>
+    <button class="btn btn-primary" onclick="callMethod('PrintCar')">Print</button>
+
+    <h2>Bike Details</h2>
+    <button class="btn btn-primary" onclick="callMethod('SpeedUpBike')">Speed Up</button>
+    <button class="btn btn-primary" onclick="callMethod('SlowDownBike')">Slow Down</button>
+    <button class="btn btn-primary" onclick="callMethod('PrintBike')">Print</button>
+
+    <p id="output"></p>
+</div>
+
+<script>
+    function callMethod(method) {
+        fetch(`/Home/${method}`)
+            .then(response => response.text())
+            .then(data => document.getElementById("output").innerText = data)
+            .catch(error => console.error("Error:", error));
+    }
+</script>
